@@ -43,4 +43,4 @@ Read [more](https://alexop.dev/posts/create-pwa-vue3-vite-4-steps).
 
 ---
 
-###### [Vue](https://vuejs.org/guide/quick-start.html) is used
+###### Built with [Vue](https://vuejs.org/guide/quick-start.html)
