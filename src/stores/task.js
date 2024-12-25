@@ -10,8 +10,6 @@ export const useTaskStore = defineStore('task', () => {
 
   const load = () => {
     list.value = get(STORAGE_KEY)
-
-    return list.value
   }
   const save = () => {
     set(STORAGE_KEY, list.value)

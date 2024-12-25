@@ -5,7 +5,7 @@ import AddTaskForm from '@/components/molecules/AddTaskForm.vue'
 
 const taskStore = useTaskStore()
 
-const tasks = taskStore.load()
+taskStore.load()
 
 const removeTask = (task) => {
   const remove = confirm(`Remove "${task}"?`)
@@ -29,7 +29,7 @@ const clearTasks = () => {
 <template>
   <section class="wrapper">
     <ol class="tasks-list">
-      <li class="tasks-list__item" v-for="task in tasks" :key="task.name">
+      <li class="tasks-list__item" v-for="task in taskStore.list" :key="task.name">
         <TaskItem :task="task" @remove="removeTask" @complete="completeTask" />
       </li>
     </ol>
