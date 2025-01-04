@@ -67,7 +67,18 @@ export default defineConfig(({ mode }) => {
               options: {
                 cacheName: 'images',
                 expiration: {
-                  maxEntries: 100,
+                  maxEntries: 30,
+                  maxAgeSeconds: 60 * 24 * 60 * 60, // 60 days
+                },
+              },
+            },
+            {
+              urlPattern: ({ request }) => request.destination === 'font',
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'fonts',
+                expiration: {
+                  maxEntries: 30,
                   maxAgeSeconds: 60 * 24 * 60 * 60, // 60 days
                 },
               },
