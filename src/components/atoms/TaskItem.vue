@@ -6,12 +6,18 @@ defineProps({
   },
 })
 
-defineEmits(['remove', 'complete'])
+defineEmits(['edit', 'remove', 'complete'])
 </script>
 
 <template>
   <div class="task-item">
-    <p class="task-item__title" :class="{ complete: task.complete }">{{ task.name }}</p>
+    <p
+      class="task-item__title"
+      :class="{ complete: task.complete }"
+      @click="$emit('edit', task.name)"
+    >
+      {{ task.name }}
+    </p>
     <v-btn
       :icon="task.complete ? 'mdi-refresh' : 'mdi-check'"
       density="comfortable"

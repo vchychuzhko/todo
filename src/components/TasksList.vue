@@ -7,6 +7,13 @@ const taskStore = useTaskStore()
 
 taskStore.load()
 
+const editTask = (task) => {
+  const name = prompt(`Edit "${task}"`, task)
+
+  if (name && name !== task) {
+    taskStore.update(task, name)
+  }
+}
 const removeTask = (task) => {
   const remove = confirm(`Remove "${task}"?`)
 
@@ -30,7 +37,7 @@ const clearTasks = () => {
   <section class="wrapper">
     <ol class="tasks-list">
       <li class="tasks-list__item" v-for="task in taskStore.list" :key="task.name">
-        <TaskItem :task="task" @remove="removeTask" @complete="completeTask" />
+        <TaskItem :task="task" @edit="editTask" @remove="removeTask" @complete="completeTask" />
       </li>
     </ol>
     <AddTaskForm />

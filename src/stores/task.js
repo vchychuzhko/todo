@@ -25,6 +25,13 @@ export const useTaskStore = defineStore('task', () => {
 
     save()
   }
+  const update = (task, name) => {
+    const index = list.value.findIndex((item) => item.name === task)
+
+    list.value[index].name = name
+
+    save()
+  }
   const remove = (task) => {
     const index = list.value.findIndex((item) => item.name === task)
 
@@ -41,5 +48,5 @@ export const useTaskStore = defineStore('task', () => {
     save()
   }
 
-  return { list, load, clear, add, remove, complete }
+  return { list, load, clear, add, update, remove, complete }
 })
