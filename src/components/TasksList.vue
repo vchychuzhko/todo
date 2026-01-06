@@ -34,26 +34,13 @@ const clearTasks = () => {
 </script>
 
 <template>
-  <section class="wrapper">
-    <ol class="tasks-list">
-      <li class="tasks-list__item" v-for="task in taskStore.list" :key="task.name">
+  <section>
+    <ol class="mb-4 list-decimal ps-4">
+      <li class="pb-2" v-for="task in taskStore.list" :key="task.name">
         <TaskItem :task="task" @edit="editTask" @remove="removeTask" @complete="completeTask" />
       </li>
     </ol>
     <AddTaskForm />
-    <v-btn class="tasks-list__clear" variant="text" block @click="clearTasks">Clear</v-btn>
+    <v-btn class="mt-2" variant="text" block @click="clearTasks">Clear</v-btn>
   </section>
 </template>
-
-<style scoped>
-.tasks-list {
-  margin-bottom: 1rem;
-  padding-inline-start: 1rem;
-}
-.tasks-list__item {
-  padding-block: 0.5rem;
-}
-.tasks-list__clear {
-  margin-top: 0.5rem;
-}
-</style>

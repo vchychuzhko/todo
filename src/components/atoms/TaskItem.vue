@@ -10,12 +10,8 @@ defineEmits(['edit', 'remove', 'complete'])
 </script>
 
 <template>
-  <div class="task-item">
-    <p
-      class="task-item__title"
-      :class="{ complete: task.complete }"
-      @click="$emit('edit', task.name)"
-    >
+  <div class="flex items-center gap-2">
+    <p class="flex-1" :class="{ 'line-through': task.complete }" @click="$emit('edit', task.name)">
       {{ task.name }}
     </p>
     <v-btn
@@ -26,17 +22,3 @@ defineEmits(['edit', 'remove', 'complete'])
     <v-btn icon="mdi-close" density="comfortable" @click="$emit('remove', task.name)" />
   </div>
 </template>
-
-<style scoped>
-.task-item {
-  align-items: center;
-  column-gap: 0.5rem;
-  display: flex;
-}
-.task-item__title {
-  flex: 1;
-}
-.task-item__title.complete {
-  text-decoration: line-through;
-}
-</style>
