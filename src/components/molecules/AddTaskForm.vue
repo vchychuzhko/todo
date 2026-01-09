@@ -17,7 +17,12 @@ const addTask = () => {
 
 <template>
   <v-form @submit.prevent="addTask">
-    <v-text-field v-model="task" label="Your task" />
-    <v-btn type="submit" block>Add</v-btn>
+    <v-text-field
+      v-model="task"
+      label="Your task"
+      hide-details
+      append-icon="mdi-plus-circle-outline"
+      @click:append="addTask"
+    />
   </v-form>
 </template>

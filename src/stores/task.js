@@ -40,7 +40,7 @@ export const useTaskStore = defineStore('task', () => {
     save()
   }
 
-  const complete = (task) => {
+  const toggle = (task) => {
     const index = list.value.findIndex((item) => item.name === task)
 
     list.value[index].complete = !list.value[index].complete
@@ -48,5 +48,5 @@ export const useTaskStore = defineStore('task', () => {
     save()
   }
 
-  return { list, load, clear, add, update, remove, complete }
+  return { list, load, clear, add, update, remove, toggle }
 })

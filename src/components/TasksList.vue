@@ -21,8 +21,8 @@ const removeTask = (task) => {
     taskStore.remove(task)
   }
 }
-const completeTask = (task) => {
-  taskStore.complete(task)
+const toggleTask = (task) => {
+  taskStore.toggle(task)
 }
 const clearTasks = () => {
   const remove = confirm('Remove all tasks?')
@@ -34,13 +34,13 @@ const clearTasks = () => {
 </script>
 
 <template>
-  <section>
-    <ol class="mb-4 list-decimal ps-4">
+  <section class="mx-auto max-w-120">
+    <ol class="mb-4 list-decimal ps-5">
       <li class="pb-2" v-for="task in taskStore.list" :key="task.name">
-        <TaskItem :task="task" @edit="editTask" @remove="removeTask" @complete="completeTask" />
+        <TaskItem :task="task" @edit="editTask" @remove="removeTask" @toggle="toggleTask" />
       </li>
     </ol>
     <AddTaskForm />
-    <v-btn class="mt-2" variant="text" block @click="clearTasks">Clear</v-btn>
+    <v-btn class="mt-2" text="Clear" variant="text" block @click="clearTasks" />
   </section>
 </template>
