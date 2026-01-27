@@ -5,6 +5,10 @@ Light app to create and do your todo list.
 ![version](https://img.shields.io/badge/version-0.0.1-orange)
 ![build](https://github.com/vchychuzhko/todo/actions/workflows/deploy.yml/badge.svg)
 
+## Type Support for `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vite.dev/config/).
@@ -21,7 +25,7 @@ npm install
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Type-Check, Compile and Minify for Production
 
 ```sh
 npm run build

@@ -1,5 +1,5 @@
-<script setup>
-import { useTaskStore } from '@/stores/task.js'
+<script setup lang="ts">
+import { useTaskStore } from '@/stores/task'
 import TaskItem from '@/components/atoms/TaskItem.vue'
 import AddTaskForm from '@/components/molecules/AddTaskForm.vue'
 
@@ -7,21 +7,21 @@ const taskStore = useTaskStore()
 
 taskStore.load()
 
-const editTask = (task) => {
+const editTask = (task: string) => {
   const name = prompt(`Edit "${task}"`, task)
 
   if (name && name !== task) {
     taskStore.update(task, name)
   }
 }
-const removeTask = (task) => {
+const removeTask = (task: string) => {
   const remove = confirm(`Remove "${task}"?`)
 
   if (remove) {
     taskStore.remove(task)
   }
 }
-const toggleTask = (task) => {
+const toggleTask = (task: string) => {
   taskStore.toggle(task)
 }
 const clearTasks = () => {
