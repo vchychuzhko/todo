@@ -1,9 +1,13 @@
 # ToDo
 
-Light app to create and do your todo list.
+Light app to create and do your todo lists.
 
-![version](https://img.shields.io/badge/version-0.0.1-orange)
+![version](https://img.shields.io/badge/version-0.1.0-orange)
 ![build](https://github.com/vchychuzhko/todo/actions/workflows/deploy.yml/badge.svg)
+
+You can install this app as PWA so it will work offline.
+
+Todo list is stored in local storage and is visible only to you.
 
 ## Type Support for `.vue` Imports in TS
 

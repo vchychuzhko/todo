@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useTaskStore } from '@/stores/task'
 
-const taskStore = useTaskStore()
+const emit = defineEmits<{
+  (e: 'add', task: string): void
+}>()
 
 const task = ref('')
 
 const addTask = () => {
   if (!task.value) return
 
-  taskStore.add(task.value)
+  emit('add', task.value)
 
   task.value = ''
 }

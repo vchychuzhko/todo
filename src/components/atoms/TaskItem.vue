@@ -1,36 +1,35 @@
 <script setup lang="ts">
-defineProps({
-  task: {
-    type: Object,
-    required: true,
-  },
-})
+import type { Task } from '@/stores/task.ts'
 
-defineEmits(['edit', 'remove', 'toggle'])
+defineProps<{
+  task: Task
+}>()
+
+defineEmits<{
+  (e: 'edit'): void
+  (e: 'remove'): void
+  (e: 'toggle'): void
+}>()
 </script>
 
 <template>
   <div class="flex items-center gap-2">
-    <p
-      class="flex-1 py-1"
-      :class="{ 'line-through': task.complete }"
-      @click="$emit('edit', task.name)"
-    >
+    <p class="flex-1 py-1" :class="{ 'line-through': task.completed }" @click="$emit('edit')">
       {{ task.name }}
     </p>
     <v-btn
-      :icon="task.complete ? 'mdi-refresh' : 'mdi-check'"
-      :title="task.complete ? 'Reset' : 'Complete'"
+      :icon="task.completed ? 'mdi-refresh' : 'mdi-check'"
+      :title="task.completed ? 'Reset' : 'Complete'"
       density="comfortable"
-      variant="text"
-      @click="$emit('toggle', task.name)"
+      variant="plain"
+      @click="$emit('toggle')"
     />
     <v-btn
       icon="mdi-close"
       title="Remove"
       density="comfortable"
-      variant="text"
-      @click="$emit('remove', task.name)"
+      variant="plain"
+      @click="$emit('remove')"
     />
   </div>
 </template>

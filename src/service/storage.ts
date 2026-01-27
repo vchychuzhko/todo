@@ -1,10 +1,10 @@
-export const get = (key) => {
+export const get = (key: string) => {
   const data = localStorage.getItem(key)
 
   return data ? JSON.parse(data) : []
 }
 
-export const set = (key, data) => {
+export const set = (key: string, data: any) => {
   localStorage.setItem(key, JSON.stringify(data))
 }
 
