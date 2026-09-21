@@ -4,7 +4,7 @@ export const get = (key: string) => {
   return data ? JSON.parse(data) : []
 }
 
-export const set = (key: string, data: any) => {
+export const set = (key: string, data: unknown) => {
   localStorage.setItem(key, JSON.stringify(data))
 }
 
