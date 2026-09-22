@@ -18,6 +18,11 @@ app.use(createPinia())
 const vuetify = createVuetify({
   components,
   directives,
+  defaults: {
+    VBtn: {
+      class: 'text-uppercase',
+    },
+  },
 })
 
 app.use(vuetify)

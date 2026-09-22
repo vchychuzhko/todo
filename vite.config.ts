@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
         manifest: {
           name: 'ToDo',
           short_name: 'ToDo',
-          description: 'Light app to create and do your todo list',
+          description: 'App to create and do your todo list',
           theme_color: '#ffffff',
           icons: [
             {
