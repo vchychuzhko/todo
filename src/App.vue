@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useTaskStore } from '@/stores/task.js'
-import TasksList from './components/TasksList.vue'
+import { useTasks } from '@/composables/useTasks.ts'
+import TasksList from '@/components/TasksList.vue'
 import { nextTick, ref } from 'vue'
 
-const taskStore = useTaskStore()
+const tasks = useTasks()
 
-taskStore.load()
+tasks.load()
 
 const tab = ref<number | null>(null)
 
@@ -13,21 +13,21 @@ const addGroup = () => {
   const name = prompt('Enter group name')
 
   if (name) {
-    taskStore.addGroup(name)
+    tasks.addGroup(name)
 
     nextTick(() => {
-      tab.value = taskStore.list.length - 1
+      tab.value = tasks.list.value.length - 1
     })
   } else {
     tab.value = 0
   }
 }
 const removeGroup = (groupIndex: number) => {
-  const group = taskStore.list[groupIndex]
+  const group = tasks.list.value[groupIndex]
   const remove = confirm(`Remove "${group.name}" group?`)
 
   if (remove) {
-    taskStore.removeGroup(groupIndex)
+    tasks.removeGroup(groupIndex)
 
     tab.value = 0
   }
@@ -39,7 +39,7 @@ const removeGroup = (groupIndex: number) => {
     <v-app-bar color="primary" density="compact">
       <v-tabs v-model="tab">
         <v-tab
-          v-for="(group, index) in taskStore.list"
+          v-for="(group, index) in tasks.list.value"
           :key="group.name"
           :text="group.name"
           :value="index"
@@ -55,7 +55,7 @@ const removeGroup = (groupIndex: number) => {
       <v-container>
         <v-tabs-window v-model="tab">
           <v-tabs-window-item
-            v-for="(group, index) in taskStore.list"
+            v-for="(group, index) in tasks.list.value"
             :key="group.name"
             :value="index"
           >

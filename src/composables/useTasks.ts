@@ -1,7 +1,6 @@
 import { ref } from 'vue'
-import { defineStore } from 'pinia'
 
-import storage from '../service/storage'
+import { useStorage } from '@/composables/useStorage'
 
 const STORAGE_KEY = 'todo'
 
@@ -15,9 +14,10 @@ export interface TaskGroup {
   tasks: Task[]
 }
 
-export const useTaskStore = defineStore('task', () => {
-  const list = ref<TaskGroup[]>([])
+const list = ref<TaskGroup[]>([])
+const storage = useStorage()
 
+export const useTasks = () => {
   const load = () => {
     const tasks = storage.get(STORAGE_KEY)
 
@@ -65,5 +65,15 @@ export const useTaskStore = defineStore('task', () => {
     save()
   }
 
-  return { list, load, addGroup, removeGroup, clearGroup, add, update, remove, toggle }
-})
+  return {
+    list,
+    load,
+    addGroup,
+    removeGroup,
+    clearGroup,
+    add,
+    update,
+    remove,
+    toggle,
+  }
+}

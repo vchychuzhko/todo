@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { type TaskGroup, useTaskStore } from '@/stores/task'
-import TaskItem from '@/components/atoms/TaskItem.vue'
-import AddTaskForm from '@/components/molecules/AddTaskForm.vue'
+import { type TaskGroup, useTasks } from '@/composables/useTasks.ts'
+import TaskItem from '@/components/TasksList/TaskItem.vue'
+import AddTaskForm from '@/components/TasksList/AddTaskForm.vue'
 
-const taskStore = useTaskStore()
+const tasks = useTasks()
 
 const props = defineProps<{
   group: TaskGroup
@@ -14,14 +14,14 @@ const emit = defineEmits<{
 }>()
 
 const addTask = (task: string) => {
-  taskStore.add(props.groupIndex, task)
+  tasks.add(props.groupIndex, task)
 }
 const editTask = (taskIndex: number) => {
   const task = props.group.tasks[taskIndex].name
   const name = prompt(`Edit "${task}"`, task)
 
   if (name && name !== task) {
-    taskStore.update(props.groupIndex, taskIndex, name)
+    tasks.update(props.groupIndex, taskIndex, name)
   }
 }
 const removeTask = (taskIndex: number) => {
@@ -29,11 +29,11 @@ const removeTask = (taskIndex: number) => {
   const remove = confirm(`Remove "${task}"?`)
 
   if (remove) {
-    taskStore.remove(props.groupIndex, taskIndex)
+    tasks.remove(props.groupIndex, taskIndex)
   }
 }
 const toggleTask = (taskIndex: number) => {
-  taskStore.toggle(props.groupIndex, taskIndex)
+  tasks.toggle(props.groupIndex, taskIndex)
 }
 
 const clearGroup = () => {
@@ -44,7 +44,7 @@ const clearGroup = () => {
   const clear = confirm('Clear all tasks?')
 
   if (clear) {
-    taskStore.clearGroup(props.groupIndex)
+    tasks.clearGroup(props.groupIndex)
   }
 }
 </script>
